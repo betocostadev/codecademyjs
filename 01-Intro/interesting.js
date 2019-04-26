@@ -1,4 +1,18 @@
 // Notes of interesting parts of JavaScript - CODECADEMY
+
+/*
+CONTENTS:
+JavaScript Falsy Values;
+Short-Circuit Evaluation
+Ternary Operators ? true : false
+ES6 Function Default Parameters
+Helper functions (functions that call other functions)
+Function expressions (besides IIFE)
+Arrow Functions - Diferent ways to declare and use them
+Variable Scope
+Pass-by-reference - Change the array inside a function and the array will change outside.
+*/
+
 /* FALSY JavaScript values:
 number = 0;
 NaN
@@ -113,3 +127,45 @@ console.log(sumSame(21));
 console.log('Another example:');
 const plantNeedsWater = day => day === 'Wednesday' ? true : false;
 console.log(plantNeedsWater('Wednesday'));
+
+// SCOPE
+console.log('\nVariable Scope:\n');
+const logSkyColor = () => {
+    const dusk = true;
+    let color = 'blue';
+    if (dusk) {
+      let color = 'pink';
+      console.log(color); // pink
+    }
+    console.log(color); // blue
+};
+
+// console.log(color); // ReferenceError
+logSkyColor();
+/* REMEMBER:
+LET AND CONST are block scope variables. Even when using a for (let i), the variable is local only.
+Var have some differences, it's more a function scope variable.
+
+From CodeCademy:
+Tightly scoping your variables will greatly improve your code in several ways:
+
+It will make your code more legible since the blocks will organize your code into discrete sections.
+It makes your code more understandable since it clarifies which variables are associated with different parts of the program rather than having to keep track of them line after line!
+It’s easier to maintain your code, since your code will be modular.
+It will save memory in your code because it will cease to exist after the block finishes running.
+
+While we use block scope, we still pollute our namespace by reusing the same variable name twice. A better practice would be to rename the variable inside the block.
+*/
+
+// MUTATE AN ARRAY INSIDE A FUNCTION
+console.log('\nArray mutation within a function:');
+
+const flowers = ['peony', 'daffodil', 'marigold'];
+function addFlower(arr) {
+  arr.push('lily');
+}
+
+addFlower(flowers);
+
+console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
+/* So when you pass an array into a function, if the array is mutated inside the function, that change will be maintained outside the function as well. You might also see this concept explained as pass-by-reference since what we’re actually passing the function is a reference to where the variable memory is stored and changing the memory. */
