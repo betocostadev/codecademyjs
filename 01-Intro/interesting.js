@@ -11,6 +11,8 @@ Function expressions (besides IIFE)
 Arrow Functions - Diferent ways to declare and use them
 Variable Scope
 Pass-by-reference - Change the array inside a function and the array will change outside.
+Nested Loops
+Breaking Loops
 */
 
 /* FALSY JavaScript values:
@@ -169,3 +171,56 @@ addFlower(flowers);
 
 console.log(flowers); // Output: ['peony', 'daffodil', 'marigold', 'lily']
 /* So when you pass an array into a function, if the array is mutated inside the function, that change will be maintained outside the function as well. You might also see this concept explained as pass-by-reference since what we’re actually passing the function is a reference to where the variable memory is stored and changing the memory. */
+
+// NESTED LOOPS
+/* Using a nested for loop to make a comparison: */
+console.log('\nNested Loops:');
+const myArray = [6, 19, 20];
+const yourArray = [19, 81, 2];
+for (let i = 0; i < myArray.length; i++) {
+  for (let j = 0; j < yourArray.length; j++) {
+    if (myArray[i] === yourArray[j]) {
+      console.log('Both loops have the number: ' + yourArray[j])
+    }
+  }
+};
+
+/* Mutual followers:
+Using a for loop to add the matching elements of two arrays to a third array */
+console.log('\nFollowers:\n');
+const bobsFollowers = ['Iba', 'Cris', 'Bovino', 'Shok'];
+const tinasFollowers = ['Rosa', 'Bovino', 'Cris'];
+const mutualFollowers = [];
+for (let i = 0; i < bobsFollowers.length; i++) {
+  for (let j = 0; j < tinasFollowers.length; j++) {
+    if (bobsFollowers[i] === tinasFollowers[j]) {
+      mutualFollowers.push(bobsFollowers[i]);
+    }
+  }
+}
+console.log(bobsFollowers);
+console.log(tinasFollowers);
+console.log(mutualFollowers);
+
+// WHILE LOOP TO FIND A RANDOM CARD USING NUMBERS:
+console.log('\nUsing a while loop for different conditions:\n');
+const cards = ['diamond', 'spade', 'heart', 'club'];
+
+let currentCard;
+while (currentCard !== 'spade') {
+  currentCard = cards[Math.floor(Math.random() * 4)];
+  if (currentCard === 'spade') {
+    console.log(currentCard);
+  }
+}
+
+// BREAKING LOOPS WITH THE KEYWORD BREAK
+console.log('\nBreaking a loop with \'break\':');
+for (let i = 0; i < 99; i++) {
+  if (i > 2 ) {
+     break;
+  }
+  console.log('Banana.');
+}
+
+console.log('Orange you glad I broke out the loop!');
