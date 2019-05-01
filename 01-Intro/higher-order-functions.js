@@ -158,4 +158,73 @@ We can think of callbacks as variables for functions – they can take on many d
 */
 
 /* More about higher-order functions: FunFunFunction
+https://www.youtube.com/watch?v=BMUiFMZr7vk&t=313s
  */
+console.log('\nMore about higher-order functions - FunFunFunction:\n');
+
+// Let's base the example below on filter, filter is used as a Higher Order Function
+const animals = [
+  {name: 'Fluffykins', species: 'rabbit'},
+  {name: 'Meg',        species: 'dog'},
+  {name: 'Smoke',      species: 'dog'},
+  {name: 'Thunder',    species: 'cat'},
+  {name: 'Super',      species: 'fish'}
+]
+console.log(`The animals array of objects: ${animals}`);
+// Now let us filter the dogs.
+// If we were going to use a normal 'for loop' to get the dogs;
+const dogsFor = [];
+for (let i = 0; i < animals.length; i++) {
+  if (animals[i].species === 'dog') {
+    dogsFor.push(animals[i]);
+  }
+}
+
+console.log(`Filtering an array using a default for loop to get the dogs:`);
+console.log(dogsFor);
+console.log('Now using filter:');
+/* Notice the use of a higher-order function
+Filter uses an callback function to work: */
+const dogs = animals.filter(function (animal) { return animal.species === 'dog' } );
+console.log(dogs);
+
+/*
+A simple function that would do the same thing:
+const isDog = function(animal) {
+  return animal.species === 'dog';
+}
+Then using the filter:
+const dogs = animals.filter(isDog);
+*/
+
+/* On the example above, we used an anonymous function created on the filter.
+Now we will create another function and use it as the callback for the filter. */
+console.log('\nCalling an existing function as a callback for filter.\n');
+
+const amGods = [
+  {name: 'Odin',       isGod: true},
+  {name: 'DeadWife',   isGod: false},
+  {name: 'Bilquis',    isGod: true},
+  {name: 'Leprechaun', isGod: false},
+  {name: 'Thor',       isGod: true}
+]
+
+// A function to check for each one if it is a god
+const isGod = (char) => {
+  return char.isGod === true;
+}
+
+// A function to check for each one it is NOT a god
+
+const isNotGod = (char) => {
+  return char.isGod === false;
+}
+// Using the filter with the previously created functions:
+const gods = amGods.filter(isGod);
+console.log('Using a previously created function to check for gods:');
+console.log(gods);
+
+// Get the characters that are NOT Gods.
+const notGods = amGods.filter(isNotGod);
+console.log('Using a previously created function to check for NOT gods:');
+console.log(notGods);
