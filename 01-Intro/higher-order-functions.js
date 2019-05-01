@@ -3,10 +3,10 @@
 
 /*
 # - Code line
-10 - HIGHER-ORDER FUNCTIONS
-39 - Better example of Functions as Data
-91 - Functions as parameters
-160 - FUN FUN FUNCTION - Higher-order-functions
+12 - HIGHER-ORDER FUNCTIONS
+42 - Better example of Functions as Data
+92 - Functions as parameters
+161 - FUN FUN FUNCTION - Higher-order-functions
 */
 
 console.log('Higher-Order Functions - Functions as data:');
@@ -156,6 +156,7 @@ then this is a situation where we should use callbacks. If we have a function wh
 TLDR
 We can think of callbacks as variables for functions – they can take on many different function values – whereas calling a function directly is like using a constant.
 */
+
 
 /* More about higher-order functions: FunFunFunction
 https://www.youtube.com/watch?v=BMUiFMZr7vk&t=313s
