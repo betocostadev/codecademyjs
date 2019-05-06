@@ -27,21 +27,45 @@ Export the module.
 
 INDEX - # Code Line
 35 - Module Exports
-
-
-
+47 - require()
+51 - Adding more to our exports.
+71 - MODULES 2 - go to modules2.js
 */
 
 // Module Exports;
 console.log('Creating a module:');
 
 const Airplane = {
-  myAirplane: "StarJet"
+  myAirplane: "StarJet",
 };
 module.exports = Airplane; // ES5 syntax
+// ES6 Syntax = export default Airplane;
+// ATTENTION - NEW EXPORT ON LINE 68;
 
 console.log('Object created:');
 console.log(Airplane);
 
-console.log('\nCheck modulesreq.js to see the imported module');
-// Module Require - File modulesreq.js
+console.log('\nCheck modules-req.js to see the imported module');
+// Module Require - File modules-req.js
+
+/* module.exports = Adding more to our exports */
+console.log('Adding more to our exports:');
+/* We can also wrap any collection of data and functions in an object, and export the object using module.exports. In modules.js, we could write:
+
+module.exports = {
+    model: 'Boeing',
+    getModel: function() {
+        return this.model;
+    }
+};
+
+In the above code, notice:
+
+module.exports exposes the current module as an object.
+model and getModel are properties on the object.
+
+*/
+console.log('\nThe new export, including the new model and getModel properties.\n');
+
+
+/* GO TO MODULES-2.js */
