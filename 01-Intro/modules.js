@@ -25,11 +25,27 @@ Define an object to represent the module.
 Add data or behavior to the module.
 Export the module.
 
+IMPORTANT!
+For ES6 Syntax we have to use experimental features of node.
+Mode on: https://adrianmejia.com/blog/2016/08/12/getting-started-with-node-js-modules-require-exports-imports-npm-and-beyond/
+
+Also, check the files .mjs to understand.
+
+Why use import instead of require?
+import can be used to import pieces of a module or the entire module, but require() will
+import the entire module. This can save time and memory.
+
+For production code while using ES6, it's recommended to use Babel.
+
 INDEX - # Code Line
-35 - Module Exports
-47 - require()
-51 - Adding more to our exports.
-71 - MODULES 2 - go to modules2.js
+51 - Module Exports
+64 - require()
+68 - Adding more to our exports.
+87 - MODULES 2 - go to modules2.js
+ES6 Modules - modules3.mjs - Yes, another extention, you'll understand later.
+NAMED EXPORTS - modules4.mjs
+
+
 */
 
 // Module Exports;
