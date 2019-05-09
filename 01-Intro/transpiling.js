@@ -27,7 +27,8 @@ console.log(carbonara);
 
 - A similarity to other programming languages — JavaScript ES6 is syntactically more similar to other object-oriented programming languages. This leads to less friction when experienced, non-JavaScript developers want to learn JavaScript.
 - Readability and economy of code — The new syntax is often easier to understand (more readable) and requires fewer characters to create the same functionality (economy of code).
-- Addresses sources of ES5 bugs — Some ES5 syntax led to common bugs. With ES6, Ecma introduced syntax that mitigates some of the most common pitfalls. */
+- Addresses sources of ES5 bugs — Some ES5 syntax led to common bugs. With ES6, ECMA introduced syntax that mitigates some of the most common pitfalls.
+*/
 
 /*
 STRUCTURE WHEN USE BABEL:
