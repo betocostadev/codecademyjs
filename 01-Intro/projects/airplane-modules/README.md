@@ -17,12 +17,11 @@ A way to solve is probably with Browserify or Webpack. Too much trouble for such
 
 ### Project Checklist
 
-- 🔲 JS Export Module - Airplane Constructor
-- 🔲 JS Export Module - Meet Staff Requirements Function
-- 🔲 JS Export Module - Meet Fuel Requirements Function
-- 🔲 JS Export Module - Meet Speed Requirements Function
-- 🔲 JS Import Module - Test
-- 🔲 HTML - Base HTML
+- ✅ JS Export Module - Airplane Constructor
+- ✅ JS Export Module - Meet Staff Requirements Function
+- ✅ JS Export Module - Meet Range Requirements Function
+- ❌ JS Import Module - Test - *Disabled*
+- ✅ HTML - Base HTML
 - 🔲 HTML - Forms
 - 🔲 JS Import Module - DOM Manipulation
 - 🔲 CSS - Base style

@@ -1,6 +1,10 @@
-/* Airplanes Initial array */
+/* Uncaught ReferenceError: require is not defined
+Due to the error above, this file is 'deactivated'.
+There will be no modules for this project. All the code is going to be on main.js */
+
+// Airplanes Initial array
 // let Airplane = '';
-const airplanes = [
+/* const airplanes = [
   {
     name: 'B737',
     fuelCapacity: 3000,
@@ -27,13 +31,14 @@ const airplanes = [
       return this.maxSpeed - this.minSpeed;
     },
   },
-];
+]; */
 
 // Add Airplane - TEST:
 // addAirplane('A320', 3000, 900, 200, ['pilots', 'flightAttendants', 'engineers']);
 // console.log(airplanes);
 
-// Check if airplane meets the range requirements
+
+/* // Check if airplane meets the range requirements
 const meetsRangeReq = (range) => {
   airplanes.forEach((airplane) => {
     if (range <= airplane.range) {
@@ -42,9 +47,9 @@ const meetsRangeReq = (range) => {
       console.log(`${airplane.name} range is:${airplane.range} Requirement NOT Met!`);
     }
   });
-};
+}; */
 
-// Check if the airplane meets the crew requirements
+/* // Check if the airplane meets the crew requirements
 const meetsCrewReq = (crew) => {
   airplanes.forEach((airplane) => {
     if (crew <= airplane.crew.length) {
@@ -53,7 +58,7 @@ const meetsCrewReq = (crew) => {
       console.log(`${airplane.name} crew is: ${airplane.printCrew}. Requirement NOT Met!`);
     }
   });
-};
+}; */
 
 // Requirements TEST:
 // meetsRangeReq(750);
@@ -61,4 +66,4 @@ const meetsCrewReq = (crew) => {
 
 // MODULE EXPORT:
 
-export { airplanes, meetsRangeReq, meetsCrewReq };
+// export { airplanes, meetsRangeReq, meetsCrewReq };
