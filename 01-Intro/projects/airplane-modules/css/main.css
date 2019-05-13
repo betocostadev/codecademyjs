@@ -25,3 +25,7 @@ img, embed, object, video {
   display: flex;
   justify-content: space-around;
 }
+
+.crew__list-item {
+  text-transform: capitalize;
+}
