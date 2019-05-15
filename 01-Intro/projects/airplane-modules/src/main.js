@@ -76,8 +76,8 @@ const renderList = (airplanes) => {
     airplaneMinSpeed.textContent = `Min Speed: ${element.minSpeed}`;
     airplaneFlightReq.textContent = `Flight (range) Requirement meet: `;
     airplaneCrewReq.textContent = `Crew (number) Requirement meet: `;
-    flightReqConfim.textContent = ``;
-    crewReqConfirm.textContent = ``;
+    flightReqConfim.textContent = ` - `;
+    crewReqConfirm.textContent = ` - `;
     // Add the items to the container
     airplane.appendChild(airplaneName);
     airplane.appendChild(airplaneFuelCapacity);
@@ -138,6 +138,7 @@ const getUserAirplane = (e) => {
   }
 }
 
+// Global variables for the addAirplane function:
 const addAirplaneBtn = document.getElementById('addairplanebtn');
 addAirplaneBtn.addEventListener('click', getUserAirplane);
 
@@ -148,16 +149,38 @@ const meetsCrewReq = (crew) => {
     let airplaneConfirm = document.querySelector(`p[data-airplanename="${airplane.name}"]`);
     // Getting the crewConfir airplane name in the DOM, to run only on the correct airplane.
     let crewConfirm = document.querySelector(`span[data-crewname="${airplane.name}"]`);
-    console.log(crewConfirm);
+    // Checking the crew and applying the text
     if (crew <= airplane.crew.length && crewConfirm.dataset.crewname === airplaneConfirm.dataset.airplanename) {
-      crewConfirm.textContent = 'Good!';
-      console.log(`${airplane.name} crew is: ${airplane.printCrew}. Requirement Met!`);
+      // Add the text
+      crewConfirm.textContent = 'Yes';
+      // Change the class
+      crewConfirm.classList.add('good');
+      if (crewConfirm.classList.contains('bad')) {
+        crewConfirm.classList.remove('bad');
+      }
     } else if (crew > airplane.crew.length && crewConfirm.dataset.crewname === airplaneConfirm.dataset.airplanename){
-      crewConfirm.textContent = 'Bad!';
-      console.log(`${airplane.name} crew is: ${airplane.printCrew}. Requirement NOT Met!`);
+      crewConfirm.textContent = 'No';
+      crewConfirm.classList.add('bad');
+      if (crewConfirm.classList.contains('good')) {
+        crewConfirm.classList.remove('good');
+      }
     }
   });
 };
+const callCrewCheck = e => {
+  // Prevent form submit
+  e.preventDefault();
+  const flightCrew = document.getElementById('flightcrew').value;
+  if (flightCrew === '' || flightCrew === isNaN) {
+    return;
+  } else {
+    meetsCrewReq(flightCrew);
+  }
+}
+
+// Global variables for the crew check req function:
+const checkCrewReq = document.getElementById('checkcrewreq');
+checkCrewReq.addEventListener('click', callCrewCheck);
 
 // Check if airplane meets the range requirements
 const meetsRangeReq = (range) => {
@@ -168,11 +191,17 @@ const meetsRangeReq = (range) => {
     let flightConfirm = document.querySelector(`span[data-flightname="${airplane.name}"]`);
     // Checking the range and applying the text
     if (range <= airplane.range && flightConfirm.dataset.flightname === airplaneConfirm.dataset.airplanename) {
-      console.log(`${airplane.name} range is:${airplane.range} Requirement Met!`);
-      flightConfirm.textContent = 'Good!';
+      flightConfirm.textContent = 'Yes';
+      flightConfirm.classList.add('good');
+      if (flightConfirm.classList.contains('bad')) {
+        flightConfirm.classList.remove('bad');
+      }
     } else if (range > airplane.range && flightConfirm.dataset.flightname === airplaneConfirm.dataset.airplanename){
-      flightConfirm.textContent = 'Bad!';
-      console.log(`${airplane.name} range is:${airplane.range} Requirement NOT Met!`);
+      flightConfirm.textContent = 'No';
+      flightConfirm.classList.add('bad');
+      if (flightConfirm.classList.contains('good')) {
+        flightConfirm.classList.remove('good');
+      }
     }
   });
 };
@@ -181,7 +210,11 @@ const callRangeCheck = e => {
   // Prevent form submit
   e.preventDefault();
   const flightReq = document.getElementById('flightreq').value;
-  meetsRangeReq(flightReq);
+  if(flightReq === '' || flightReq === isNaN) {
+    return;
+  } else {
+    meetsRangeReq(flightReq);
+  }
 }
 
 // Global variables for the check flight req function:

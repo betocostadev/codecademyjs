@@ -35,10 +35,10 @@
           <input type="number" name="airplane-fuel" id="fuelqtd" step="250" placeholder="Example: 4000"><br>
 
           <label for="airplane-maxspeed">Please, input the airplane max speed (knots):</label><br>
-          <input type="number" name="airplane-maxspeed" id="maxspd" step="100" placeholder="Example: 650"><br>
+          <input type="number" name="airplane-maxspeed" id="maxspd" step="10" placeholder="Example: 650"><br>
 
           <label for="airplane-minspeed">Please, input the airplane min speed (knots):</label><br>
-          <input type="number" name="airplane-minspeed" id="minspd" step="100" placeholder="Example: 200"><br>
+          <input type="number" name="airplane-minspeed" id="minspd" step="10" placeholder="Example: 200"><br>
 
           <label for="airplane-crew">Please, input the airplane crew (pilots, medics, etc):</label><br>
           <input type="text" name="airplane-crew" id="crew" placeholder="Example: Pilots, Flight Attendants, Medics"><br>
@@ -50,18 +50,23 @@
         <h3>Check Flight Requirements</h3>
         <form action="">
           <label for="flight-req">Please, input the minimum flight requirement:</label><br>
-          <input type="number" name="flight-req" id="flightreq" placeholder="Example: 350">
-
-          <button id="checkflightreq">Check Flight Airplane</button>
+          <input type="number" name="flight-req" id="flightreq" step="10" placeholder="Example: 350"><br>
+          <button id="checkflightreq">Check Range</button>
         </form>
+
         <h3>Check Crew Requirements</h3>
+        <form action="">
+          <label for="flight-crew">Please, input the minimum flight crew requirement:</label><br>
+          <input type="number" name="flight-crew" id="flightcrew" step="1" placeholder="Example: 3"><br>
+          <button id="checkcrewreq">Check Crew</button>
+        </form>
       </section>
 
     </article>
 
     <article id="apcontainer" class="airplane__container">
       <!-- Section below will be unique by each airplane. Also, dinamically create using JS -->
-      <section class="airplane__container-airplane">
+      <!-- <section class="airplane__container-airplane"> -->
 
       </section>
 
