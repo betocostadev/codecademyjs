@@ -27,10 +27,33 @@
 
       <section class="airplane__functions-airplane">
         <h3>Add Airplane</h3>
+        <form action="">
+          <label for="airplanename">Please, input the airplane name:</label><br>
+          <input type="text" name="airplane-name" id="airplaneid" placeholder="Example: A320"><br>
+
+          <label>Please, input the airplane max fuel quantity:</label><br>
+          <input type="number" name="airplane-fuel" id="fuelqtd" step="250" placeholder="Example: 4000"><br>
+
+          <label for="airplane-maxspeed">Please, input the airplane max speed (knots):</label><br>
+          <input type="number" name="airplane-maxspeed" id="maxspd" step="100" placeholder="Example: 650"><br>
+
+          <label for="airplane-minspeed">Please, input the airplane min speed (knots):</label><br>
+          <input type="number" name="airplane-minspeed" id="minspd" step="100" placeholder="Example: 200"><br>
+
+          <label for="airplane-crew">Please, input the airplane crew (pilots, medics, etc):</label><br>
+          <input type="text" name="airplane-crew" id="crew" placeholder="Example: Pilots, Flight Attendants, Medics"><br>
+          <button id="addairplanebtn">Add Airplane</button>
+        </form>
       </section>
 
       <section class="airplane__functions-requirements">
         <h3>Check Flight Requirements</h3>
+        <form action="">
+          <label for="flight-req">Please, input the minimum flight requirement:</label><br>
+          <input type="number" name="flight-req" id="flightreq" placeholder="Example: 350">
+
+          <button id="checkflightreq">Check Flight Airplane</button>
+        </form>
         <h3>Check Crew Requirements</h3>
       </section>
 
