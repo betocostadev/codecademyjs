@@ -14,6 +14,7 @@ Similarly, web development makes use of asynchronous operations. Operations like
 
 This lesson will teach you how modern JavaScript handles asynchronicity using the Promise object, introduced with ES6. */
 
+
 /* What is a Promise?
 Promises are objects that represent the eventual outcome of an asynchronous operation. A Promise object can be in one of three states:
 
@@ -30,6 +31,22 @@ If our dishwashing promise is fulfilled, we’ll be able to perform related task
 All promises eventually settle, enabling us to write logic for what to do if the promise fulfills or if it rejects. */
 
 
+/* Constructing a Promise Object
+Let’s construct a promise! To create a new Promise object, we use the new keyword and the Promise constructor method:
+
+const executorFunction = (resolve, reject) => { };
+const myFirstPromise = new Promise(executorFunction);
+
+The Promise constructor method takes a function parameter called the executor function which runs automatically when the constructor is called. The executor function generally starts an asynchronous operation and dictates how the promise should be settled.
+
+The executor function has two function parameters, usually referred to as the resolve() and reject() functions. The resolve() and reject() functions aren’t defined by the programmer. When the Promise constructor runs, JavaScript will pass its own resolve() and reject() functions into the executor function.
+
+resolve is a function with one argument. Under the hood, if invoked, resolve() will change the promise’s status from pending to fulfilled, and the promise’s resolved value will be set to the argument passed into resolve().
+reject is a function that takes a reason or error as an argument. Under the hood, if invoked, reject() will change the promise’s status from pending to rejected, and the promise’s rejection reason will be set to the argument passed into reject().
+
+Example of executor function below:
+*/
+
 const worldTrue = true;
 
 const executorFunction = (resolve, reject) => {
@@ -40,3 +57,16 @@ const executorFunction = (resolve, reject) => {
   }
 }
 const myFirstPromise = new Promise(executorFunction);
+
+/* Let’s break down what’s happening above:
+
+Edit: worldTrue was created to test the success and failure promises.
+
+- We declare a variable myFirstPromise
+- myFirstPromise is constructed using new Promise() which is the Promise constructor method.
+- executorFunction() is passed to the constructor and has two functions as parameters: resolve and reject.
+- If someCondition evaluates to true, we invoke resolve() with the string 'I resolved!'
+- If not, we invoke reject() with the string 'I rejected!'
+
+In our example, myFirstPromise resolves or rejects based on a simple condition, but, in practice, promises settle based on the results of asynchronous operations. For example, a database request may fulfill with the data from a query or reject with an error thrown. In this exercise, we’ll construct promises which resolve SYNCHRONOUSLY to more easily understand how they work. */
+
