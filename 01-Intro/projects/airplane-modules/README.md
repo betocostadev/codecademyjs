@@ -4,23 +4,17 @@
 
 This project is based on [CodeCademy](https://www.codecademy.com/learn/introduction-to-javascript) Introduction to JavaScript.
 
-
 Course modules needed to complete this project **were**:
-
 
 * **10 - Browser Compatibility and Transpilation**
 * **11 - Modules**
 
-
 *Browser Compatibility and Transpilation* is needed for Babel.
-
 
 **Modules** Not using anymore since client-side JavaScript doesn't work for 'require()'.
 A way to solve is probably with Browserify or Webpack.
 
-
 ***
-
 
 ### Project Checklist
 
@@ -30,9 +24,9 @@ A way to solve is probably with Browserify or Webpack.
 - ✅ JS - Meet Range Requirements Function
 - ❌ JS Import Module - Test - *Disabled*
 - ✅ HTML - Base HTML
-- 🔲 HTML - Forms
-- 🔲 JS DOM Manipulation
-- 🔲 CSS - Base style
+- ✅ HTML - Forms
+- ✅ JS DOM Manipulation
+- ✅ CSS - Base style
 
 
 
