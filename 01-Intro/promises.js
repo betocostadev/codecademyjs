@@ -1,7 +1,18 @@
 /* CODECADEMY - INTRODUCTION TO JAVASCRIPT
 JAVASCRIPT PROMISES */
 
-console.log('JavaScript Promises');
+/*
+INDEX - # Code Line
+16 - Promisses Intro
+61 - First Promise (Promise constructor)
+87 - Node SetTimeout()
+
+
+
+
+*/
+
+console.log('\n=== JavaScript Promises ===\n');
 /* JAVASCRIPT PROMISES
 Introduction
 In web development, asynchronous programming is notorious for being a challenging topic.
@@ -47,13 +58,14 @@ reject is a function that takes a reason or error as an argument. Under the hood
 Example of executor function below:
 */
 
+console.log('First Promise:')
 const worldTrue = true;
 
 const executorFunction = (resolve, reject) => {
   if (worldTrue) {
   resolve(console.log('First promise test: I resolved!'));
   } else {
-    reject(console.log('First promise test: I rejected!'))
+    reject(console.log('First promise test: I rejected!'));
   }
 }
 const myFirstPromise = new Promise(executorFunction);
@@ -69,4 +81,34 @@ Edit: worldTrue was created to test the success and failure promises.
 - If not, we invoke reject() with the string 'I rejected!'
 
 In our example, myFirstPromise resolves or rejects based on a simple condition, but, in practice, promises settle based on the results of asynchronous operations. For example, a database request may fulfill with the data from a query or reject with an error thrown. In this exercise, we’ll construct promises which resolve SYNCHRONOUSLY to more easily understand how they work. */
+console.log('Tests here are working synchronously!');
 
+console.log('\n=== The Node setTimeout() Function === \n');
+/* The Node setTimeout() Function
+Knowing how to construct a promise is useful, but most of the time, knowing how to consume, or use, promises will be key. Rather than constructing promises, you’ll be handling Promise objects returned to you as the result of an asynchronous operation. These promises will start off pending but settle eventually.
+
+Moving forward, we’ll be simulating this by providing you with functions that return promises which settle after some time. To accomplish this, we’ll be using setTimeout(). setTimeout() is a Node API (a comparable API is provided by web browsers) that uses callback functions to schedule tasks to be performed after a delay. setTimeout() has two parameters: a callback function and a delay in milliseconds.
+
+Example in Node:
+*/
+const delayedHello = () => {
+  console.log('Hi! This is an asynchronous greeting!');
+};
+
+setTimeout(delayedHello, 2000);
+
+/* Here, we invoke setTimeout() with the callback function delayedHello() and 2000. In at least two seconds delayedHello() will be invoked. But why is it “at least” two seconds and not exactly two seconds?
+
+This delay is performed asynchronously—the rest of our program won’t stop executing during the delay.
+Asynchronous JavaScript uses something called the event-loop. After two seconds, delayedHello() is added to a line of code waiting to be run. Before it can run, any synchronous code from the program will run. Next, any code in front of it in the line will run. This means it might be more than two seconds before delayedHello() is actually executed.
+
+Let’s look at how we’ll be using setTimeout() to construct asynchronous promises: */
+const return1secPromiseFunction = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(( ) => {resolve('I resolved!')}, 1000);
+  });
+};
+
+const prom1sec = return1secPromiseFunction();
+
+/* In the example code, we invoked return1secPromiseFunction() which returned a promise. We assigned that promise to the variable prom1sec. Similar to the asynchronous promises you may encounter in production, prom will initially have a status of pending. */
