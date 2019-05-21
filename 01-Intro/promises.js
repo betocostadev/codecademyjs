@@ -6,9 +6,9 @@ INDEX - # Code Line
 16 - Promisses Intro
 61 - First Promise (Promise constructor)
 87 - Node SetTimeout()
-
-
-
+117 - Consuming Promises
+184 - A more realistic example
+Go to promises2.js for catch() and more!
 
 */
 
@@ -105,10 +105,112 @@ Asynchronous JavaScript uses something called the event-loop. After two seconds,
 Let’s look at how we’ll be using setTimeout() to construct asynchronous promises: */
 const return1secPromiseFunction = () => {
   return new Promise((resolve, reject) => {
-    setTimeout(( ) => {resolve('I resolved!')}, 1000);
+    setTimeout(( ) => {resolve('\nLine 108 | return1secPromise runs after at least 500ms. I resolved!\n')}, 500);
   });
 };
 
 const prom1sec = return1secPromiseFunction();
+console.log(prom1sec);
 
 /* In the example code, we invoked return1secPromiseFunction() which returned a promise. We assigned that promise to the variable prom1sec. Similar to the asynchronous promises you may encounter in production, prom will initially have a status of pending. */
+
+console.log('\n=== Consuming Promises ===\n');
+
+/* Consuming Promises
+The initial state of an asynchronous promise is pending, but we have a guarantee that it will settle. How do we tell the computer what should happen then? Promise objects come with an aptly named .then() method. It allows us to say, “I have a promise, when it settles, then here’s what I want to happen…”
+
+.then() is a higher-order function— it takes two callback functions as arguments. We refer to these callbacks as handlers. When the promise settles, the appropriate handler will be invoked with that settled value.
+
+- The first handler, sometimes called onFulfilled, is a success handler, and it should contain the logic for the promise resolving.
+- The second handler, sometimes called onRejected, is a failure handler, and it should contain the logic for the promise rejecting.
+
+We can invoke .then() with one, both, or neither handler! This allows for flexibility, but it can also make for tricky debugging. If the appropriate handler is not provided, instead of throwing an error, .then() will just return a promise with the same settled value as the promise it was called on. One important feature of .then() is that it always returns a promise.*/
+
+/* We will resolve the promise we used above on line 106
+If we run the code without the .then() below, we will get the status Promise <pending>
+But running with the code below, the promise will be resolved. */
+
+console.log('\nUsing .then() to fullfil the promise:\n');
+
+const handleSuccessProm1Sec = (resolvedValue) => {
+  console.log(resolvedValue);
+}
+prom1sec.then(handleSuccessProm1Sec);
+
+/* The onFulfilled and onRejected Functions
+To handle a “successful” promise, or a promise that resolved, we invoke .then() on the promise, passing in a success handler callback function:
+
+const prom = new Promise((resolve, reject) => {
+  resolve('Yay!');
+});
+
+const handleSuccess = (resolvedValue) => {
+  console.log(resolvedValue);
+};
+
+prom.then(handleSuccess); // Prints: 'Yay!'
+
+- prom is a promise which will resolve to 'Yay!'.
+- We define a function, handleSuccess(), which prints the argument passed to it.
+- We invoke prom‘s .then() function passing in our handleSuccess() function.
+- Since prom resolves, handleSuccess() is invoked with prom‘s resolved value, 'Yay', so 'Yay' is logged to the console.
+
+With typical promise consumption, we won’t know whether a promise will resolve or reject, so we’ll need to provide the logic for either case. We can pass both an onFulfilled and onRejected callback to .then().
+*/
+console.log('\nConsuming a promise with resolve and reject:\n');
+let prom2 = new Promise((resolve, reject) => {
+  let num = Math.random();
+  if (num < .5 ){
+    resolve('Yay, random num is less than .5');
+  } else {
+    reject('Ohhh noooo! Random num is more than .5');
+  }
+});
+
+const handleSuccess2 = (resolvedValue) => {
+  console.log(resolvedValue);
+};
+
+const handleFailure2 = (rejectionReason) => {
+  console.log(rejectionReason);
+};
+
+prom2.then(handleSuccess2, handleFailure2);
+
+/*
+- prom2 is a promise which will randomly either resolve with 'Yay!'or reject with 'Ohhh noooo!'.
+- We pass two handler functions to .then(). The first will be invoked with 'Yay!' if the promise resolves, and the second will be invoked with 'Ohhh noooo!' if the promise rejects. */
+
+console.log('\nLets try a more realistic function. Check the inventory order status:\n');
+const inventory = {
+  sunglasses: 1900,
+  pants: 1088,
+  bags: 1344
+};
+
+const checkInventory = (order) => {
+  return new Promise((resolve, reject) => {
+      setTimeout(() => {
+          let inStock = order.every(item => inventory[item[0]] >= item[1]);
+          if (inStock) {
+              resolve(`Thank you. Your order was successful.`);
+          } else {
+              reject(`We're sorry. Your order could not be completed because some items are sold out.`);
+          }
+      }, 1000);
+  })
+};
+
+const order = [['sunglasses', 1], ['bags', 2]];
+
+const inventorySuccess = (resolvedValue) => {
+  console.log(resolvedValue);
+}
+
+const inventoryFailure = (resolvedValue) => {
+  console.log(resolvedValue);
+}
+
+// Notice that we have to call .then() with the success and failure functions to get the result.
+checkInventory(order).then(inventorySuccess, inventoryFailure);
+
