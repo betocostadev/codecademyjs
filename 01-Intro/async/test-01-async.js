@@ -18,11 +18,14 @@ async function fetchAvatarUrl(userId) {
     // of the promise
     const data = await response.json()
     return data.imageUrl;
-    //   .then(response => response.json())
-    //   .then(data => data.imageUrl)
 };
 
 const result = fetchAvatarUrl(123);
 result.then((success) => {
     console.log('The http I got is: ' + success);
 });
+
+/* Inside a function marked as 'async', you are allowed to place the 'await' keyword in
+front of an expression that returns a promise. When you do this, the execution of the 'async'
+function is paused until the promise is resolved. */
+
