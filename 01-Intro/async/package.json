@@ -1,0 +1,20 @@
+{
+  "name": "async-jsintro-codecademy",
+  "version": "1.0.0",
+  "description": "CodeCademy Introduction to JavaScript - Async",
+  "main": "01-async.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "async",
+    "codecademy",
+    "introduction",
+    "javascript"
+  ],
+  "author": "codecademy",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  }
+}
