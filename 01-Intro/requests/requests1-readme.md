@@ -70,7 +70,7 @@ To read more about the event loop, read the MDN documentation:
 
 #### Files
 
-- **No files, only information.**
+- **No files, information only.**
 
 Asynchronous JavaScript and XML (AJAX), enables requests to be made after the initial page load. Initially, AJAX was used only for XML formatted data, now it can be used to make requests that have many different formats.
 
@@ -222,7 +222,7 @@ In the previous exercise, you made a GET request to the Datamuse API to find wor
 
 A query string contains additional information to be sent with a request. The Datamuse API allows us to retrieve more specific data with query strings attached to the request URL.
 
-- [Wiki: query string]()
+- [Wiki: query string](https://en.wikipedia.org/wiki/Query_string)
 
 A query string is separated from the URL using a `?` character. After `?`, you can then create a parameter which is a key value pair joined by a `=`. Examine the example below:
 
@@ -235,6 +235,8 @@ If you want to add an additional parameter you will have to use the `&` characte
 ```
 'https://api.datamuse.com/words?key=value&anotherKey=anotherValue'
 ```
+
+**Code Instructions**
 
 1. Let’s do something else besides finding words that rhyme. Have `const queryParams` store the value `'rel_jjb='`. This will search for words that describe another word.
 
@@ -255,3 +257,186 @@ In the code block of `getSuggestions()`, under `wordQuery`, declare a `const` `t
 Run the code. Then enter a word and a topic and click submit.
 
 Our request will have returned a response of adjectives that are related to a topic! Feel free to play around with variables and parameters to get more word suggestions!
+
+***
+
+#### REQUESTS I
+
+## XHR POST Requests I
+
+#### Files
+
+- **No files, information only.**
+
+*Reminder*: If you haven’t already signed up for an API Key from Rebrandly, please read this Rebrandly sign up guide.
+
+- Codecademy Articles: [Rebrandly URL Shortener API](https://www.codecademy.com/articles/rebrandly-signup) .
+
+Great! By this point you’ve signed up for an API key, and you know the essence of making a GET request. We will be making a POST request using the Rebrandly API.
+
+The major difference between a GET request and POST request is that a POST request requires additional information to be sent through the request. This additional information is sent in the `body` of the post request.
+
+![XHR POST diagram](./img/XHRPOSTtransparent.svg)
+
+We’ll walk through the code from the diagram and construct our own POST request in the next lesson.
+
+***
+
+#### REQUESTS I
+
+## XHR POST Requests II
+
+#### Files
+
+- **06-request.js**
+
+We are going to reconstruct the code from the previous exercise step-by-step until we have written a complete AJAX POST request.
+
+Feel free to refer to the XHR POST diagram above at any point while completing this exercise.
+
+**Code Instructions**
+
+1. Create a new `XMLHttpRequest` object using the `new` operator, and save it in a `const` called `xhr`.
+
+The `XMLHttpRequest` object is used in JavaScript to interact with servers.
+
+2. Next, save the following URL to a `const` called `url`. Make sure the URL is wrapped in quotes so that it is a string.
+
+```
+https://api-to-call.com/endpoint
+```
+
+The URL will direct the request to the correct server.
+
+3. Create a new `const` called `data`, and save this line of code to it:
+
+```
+JSON.stringify({id: '200'});
+```
+
+`JSON.stringify()` will convert a value to a JSON string. By converting the value to a string, we can then send the data to a server.
+
+4. Set the `responseType` property of the `xhr` object to be `'json'`.
+
+5. Set the `xhr.onreadystatechange` event handler equal to an anonymous arrow function. Leave the function empty until the next step.
+
+`.onreadystatechange` will contain the event handler that will be called when `xhr`‘s state changes.
+
+6. In the code block of the function you created in the previous step, add a conditional statement that checks to see if the `readyState` of `xhr` is equal to `XMLHttpRequest.DONE`.
+
+7. In the code block of the conditional statement, return the `response` property of `xhr`. The `response` property will contain the data that we’re getting back from the POST reques`t.
+
+8. Below the function you created in the previous two steps, call the `.open()` method on the `xhr` object and pass it `'POST'` and `url` as arguments.
+
+`.open()` creates a new request and the arguments passed in determine what type of request is being made and where it’s being made to.
+
+9. On the following line, call the `.send()` method on the `xhr` object and pass `data` as an argument.
+
+`.send()` will send the request to the server.
+
+Nice work! You’ve written the boilerplate code for an AJAX POST request using an XMLHttpRequest object.
+
+***
+
+#### REQUESTS I
+
+## XHR POST Requests III
+
+#### Files
+
+- **07-request.js**
+- **07-request.html**
+- **public/07-helperFunctions.js**
+- **public/07-request.css**
+
+
+In this exercise, you’ll be making a POST request to the **Rebrandly API** to shorten a URL.
+
+Get ready! You’re now going to incorporate the previous lesson’s boilerplate code into making an actual POST request!
+
+**Code Instructions**
+
+1. Copy your Rebrandly API Key, and assign it to the `const apiKey` at the top of your code.
+
+2. Within the code block of `shortenUrl()`, create a `const` called `urlToShorten`, and save `inputField.value` to it. `urlToShorten` will now save the value of the input field
+
+Note: for the remainder of this exercise’s instructions we will be working inside the code block of `shortenUrl()`!
+
+3. Create a `const` called `data`, and save the following code to it:
+
+```
+JSON.stringify({destination: urlToShorten});
+```
+
+We’re including this information because the API expects to see an object with a key `destination` that has a value of a URL.
+
+4. Create a new `XMLHttpRequest` object using the `new` operator, and save it to a `const` called `xhr`.
+
+5. Set the `responseType` property of the `xhr` object to be `'json'`.
+
+6. Save an empty anonymous arrow function to the `onreadystatechange` event handler of the `xhr` object. This function will not take in any parameters.
+
+Inside the anonymous function’s code block, include the following code inside of its code block:
+
+```
+if (xhr.readyState === XMLHttpRequest.DONE) {
+  renderRawResponse(xhr.response);
+}
+```
+
+The `renderRawResponse` function can be viewed [here](public/07-helperFunctions.js).
+
+7. Below the anonymous function you just created, call the `.open()` method on `xhr`, and pass it `'POST'` and `url` as respective arguments.
+
+8. To access the Rebrandly API, we need a header with two key-value pairs. In the header, you must include values for `'Content-type'` and an `'apikey'`.
+
+To set the header, we have to include the following code below our `.open()` method.
+
+```
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.setRequestHeader('apikey', apiKey);
+```
+
+9. On `xhr`, call the `.send()` method, and pass it `data` as an argument.
+
+10. Enter this URL into the input field, and click the shorten button in the web page.
+
+```
+https://medium.com/@codecademy/breaking-the-coding-language-barrier-bf24652c3c60
+```
+
+Notice the object that came back!
+
+Now replace `renderRawResponse(xhr.response)` with `renderResponse(xhr.response)`. Run the code.
+
+Paste the URL again and click “Shorten”.
+
+Isn’t it much cleaner?
+
+***
+
+#### REQUESTS I
+
+## REVIEW Requests I
+
+You’ve done an amazing job navigating through making XHR GET and POST requests! Take some time to review the core concepts before moving on to the next lesson.
+
+1. JavaScript is the language of the web because of its asynchronous capabilities. AJAX, which stands for Asynchronous JavaScript and XML, is a set of tools that are used together to take advantage of JavaScript’s asynchronous capabilities.
+
+2. There are many HTTP request methods, two of which are GET and POST.
+
+3. GET requests only request information from other sources.
+
+4. POST methods can introduce new information to other sources in addition to requesting it.
+
+5. GET requests can be written using an XMLHttpRequest object and vanilla JavaScript.
+
+6. POST requests can also be written using an XMLHttpRequest object and vanilla JavaScript.
+
+7. Writing GET and POST requests with XHR objects and vanilla JavaScript requires constructing the XHR object using `new`, setting the `responseType`, creating a function that will handle the response object, and opening and sending the request.
+
+8. To add a query string to a URL endpoint you can use `?` and include a parameter.
+
+9. To provide additional parameters, use `&` and then include a key-value pair, joined by `=`.
+
+10. Determining how to correctly write the requests and how to properly implement them requires carefully reading the documentation of the API with which you’re working.
