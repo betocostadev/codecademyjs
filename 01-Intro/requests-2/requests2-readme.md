@@ -55,3 +55,33 @@ We’ll use the Datamuse API for GET requests and Rebrandly URL Shortener API fo
 ## fetch() GET Requests I
 
 #### Files
+
+- **No files, information only.**
+
+The first type of requests we’re going to tackle are GET requests using `fetch()`
+
+- [MDN: Fetch API.](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+
+The `fetch()` function:
+
+- Creates a request object that contains relevant information that an API needs.
+- Sends that request object to the API endpoint provided.
+- Returns a promise that ultimately resolves to a response object, which contains the status of the promise with information the API sent back.
+
+In the next exercise we’ll go over the boilerplate code for using `fetch()` and walk through what each step does!
+
+![fetch GET diagram](./img/fetchGETtransparent.svg)
+
+***
+
+#### REQUESTS II
+
+## fetch() GET Requests II
+
+#### Files
+
+- **02-request2.js**
+
+We are going to reconstruct the boilerplate code necessary to create a GET request using the `fetch()` function step-by-step.
+
+Feel free to refer to the `fetch()` GET diagram (above) at any point while completing this exercise.
