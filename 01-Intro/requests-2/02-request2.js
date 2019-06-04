@@ -5,7 +5,7 @@ fetch() Get Requests II
 
 /* More information on requests2-readme.md
 
-12 - fetch() Get Request
+12 - fetch() Get Request Diagram
 
 */
 

@@ -1,3 +1,14 @@
+/* CODECADEMY - INTRODUCTION TO JAVASCRIPT
+REQUESTS II
+fetch() Get Requests IV
+*/
+
+/* More information on requests2-readme.md
+
+13 - fetch() Get Request - Working Code - Helper function in public folder.
+
+*/
+
 // Information to reach API
 const url = 'https://api.datamuse.com/words';
 const queryParams = '?sl=';

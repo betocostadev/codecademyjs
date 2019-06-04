@@ -186,9 +186,74 @@ Run your code.
 
 #### Files
 
-- **03-request2.html**
-- **03-request2.js**
-- **public/03-helperFunctions.js**
-- **public/03-request2.css**
+- **No files, information only.**
 
+In the previous exercise, you successfully wrote a GET request using the fetch API and handled Promises to get word suggestions from Datamuse.
 
+Now, you’re going to learn how to use `fetch()` to construct POST requests!
+
+Take a look at the diagram below. It has the boilerplate code for a POST request using `fetch()`.
+
+Notice that the initial call takes two arguments: an endpoint and an object that contains information needed for the POST request. The rest of the request is identical to the GET request.
+
+![fetch POST diagram](./img/fetchPOSTtransparent.svg)
+
+***
+
+#### REQUESTS II
+
+## fetch() POST Requests II
+
+#### Files
+
+- **04-request2.js**
+
+We are going to reconstruct the code from the previous exercise step-by-step until we have written a complete POST request using `fetch()` and `.then()`.
+
+1. Call the `fetch()` function, pass it the URL below as a string as its first argument, and pass it an empty object (`{}`) as its second argument.
+
+```
+https://api-to-call.com/endpoint
+```
+
+We’re calling `fetch()` and providing an endpoint. In the next step we’ll fill in the empty object with the necessary information.
+
+2. The settings object you passed to the `fetch()` function will contain two properties: `method`, with a value of `'POST'`, and `body`, with a value of `JSON.stringify({id: '200'})`.
+
+This second argument determines that this request is a POST request and what information will be sent to the API.
+
+3. Chain a `.then()` method to the `fetch()` function and pass it the success callback function as its first parameter. Pass in `response` as an argument for the callback function. Leave the code block of the callback function empty for now.
+
+The code inside `.then()` will execute when the promise returned from `fetch()` is resolved.
+
+4. Inside the callback function’s code block, check the `ok` property of the `response` object inside of a conditional statement. In the code block of the conditional statement, *return* `response.json()`.
+
+When `return`ed, this information will be passed on to the next `.then()` callback function.
+
+5. Below the curly braces of the conditional statement, create a new error with this code:
+
+```
+throw new Error('Request failed!');
+```
+
+*This error will be raised if we get back some status error*.
+
+6. Create the failure callback function. This function takes a single parameter, `networkError`. Separate the first callback function from the second with a *comma*. This function is still inside of the `.then()` method.
+
+In the code block of the function you just made, log `networkError.message` to the console.
+
+7. Chain another `.then()` method to the end of the first `.then()` method.
+
+In the new `.then()` method, create an arrow callback function that takes `jsonResponse` as its parameter.
+
+Then in the code block `return jsonResponse`.
+
+The purpose of this step is to view the JSON that was returned from the previous `.then()`.
+
+#### REQUESTS II
+
+## fetch() POST Requests III
+
+#### Files
+
+- **05-request2.js**
