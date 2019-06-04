@@ -533,3 +533,180 @@ Delete `renderRawResponse(jsonResponse)` and replace it with `renderResponse(jso
 Great, now you have an organized list of words and you finished your GET request!
 
 You can view the purpose of `renderResponse` function at **public/07-helperFunctions.js.**
+
+***
+
+#### REQUESTS II
+
+## async POST Requests I
+
+#### Files
+
+- **No files, information only.**
+
+Now that you’ve made an `async` GET request, let’s start on getting you familiar the `async` POST request.
+
+As with the other GET and POST requests that you’ve been making, an `async` POST request requires more information. Take a look at the diagram.
+
+![async POST request diagram](./img/asyncawaitPOSTtransparent.svg)
+
+We still have the same structure of using `try` and `catch` as before. But, in the `fetch()` call, we now have to include an additional argument that contains more information like `method` and `body`.
+
+We’ll be explaining the why’s and how’s of the boilerplate code for `async` POST requests in the next lesson.
+
+***
+
+#### REQUESTS II
+
+## async POST Requests II
+
+#### Files
+
+- **08-request2.js**
+
+Now we’re going to piece together a POST request using `async` and `await`.
+
+Feel free to refer to the `async/await` diagram above at any point while completing this exercise.
+
+**Instructions**
+
+1. At the top of **08-request2.js** create an `async` arrow function and save it to a `const getData()`.
+
+The `async` keyword will ensure that the function returns a promise.
+
+2. In the code block for `getData`, we should add a `try` statement with an empty code block.
+
+In case things go wrong, we need to some code to handle that. Below the `try` code block, add a `catch` statement and pass in `error` as an argument.
+
+Then, in the `catch` statement code block, log `error` to the console.
+
+3. We now have to consider what we want to do inside of the `try` code block. Since we are making a POST request, we should start by using the `await` keyword before calling the `fetch()` function.
+
+We will have to save the returned promise in a variable called `response` using the `const` keyword.
+
+4. In the `fetch()` call that we just made, pass in the following URL to the function as a string for the first argument:
+
+```
+https://api-to-call.com/endpoint
+```
+
+Then as our second argument, let’s pass in an empty object for now.
+
+5. Let’s now fill in the request options in our second argument.
+
+First, add the `method` property and the value is `'POST'`. Then we have to include a `body` property and the value is `JSON.stringify({id: 200})`.
+
+Remember to separate the properties with a *comma*.
+
+6. After the code block of `response`, we should create an if statement that checks the `ok` property of the `response` object.
+
+Inside the code block of the conditional statement, `await` the resolution of calling the `.json()` method on `response`. Save the returned object to a variable called `jsonResponse` using the keyword `const`.
+
+7. `Now that we have what we want, we should return `jsonResponse` directly below the code written in the previous step.
+
+Like with previous boilerplate exercises, we’re practicing writing code. Normally, we would want to do more beyond this step of returning `jsonResponse`.
+
+8. Below the `if` conditional, `throw` a `new Error()` with the message `'Request failed!'`
+
+***
+
+#### REQUESTS II
+
+## async POST Requests III
+
+#### Files
+
+- **09-request2.js**
+- **09-request2.html**
+- **public/09-helperFunctions.js**
+- **public/09-request2.css**
+
+
+Since you’ve created the boilerplate code for a POST request, the next step is to incorporate that experience and logic into making a real request.
+
+In this exercise, you’ll need to retrieve your Rebrandly API key to access the Rebrandly API.
+
+- [Rebrandly API Keys](https://app.rebrandly.com/account/api-keys)
+
+**Instructions**
+
+1. At the top of **09-request.js**, assign `apiKey` to your Rebrandly API key.
+
+2. Under the comment “AJAX functions”, create a new arrow function and assign it to a `const` `shortenUrl()` using the `async` keyword.
+
+3. Inside the code block of the arrow function of `shortenUrl` create two `const`s:
+
+One named `urlToShorten` and assign it `inputField.value`.
+
+The other named `data` and assign it the value of calling `JSON.stringify()` and passing in `{destination: urlToShorten}`.
+
+Please note, we will be working inside `shortenUrl()` for the remainder of the exercise.
+
+4. Add a `try` statement and leave the code block empty for now. After the `try` code block, create a `catch` statement and pass in `error`.
+
+In the code block of `catch(error)`, log `error` to the console.
+
+5. Inside the `try` code block, using `const`, create a variable named `response` and assign it to `await` the value of calling calling `fetch()`.
+
+6. In the `fetch()` call, pass in `url` as the first argument and an empty object as the second argument.
+
+In that empty object you just created. It will have the following three properties:
+
+- `method` with a value of `'POST'`
+- `body` with a value of `data`
+- `headers` with a value of the object below:
+
+```
+{
+'Content-type': 'application/json',
+'apikey': apiKey
+}
+```
+
+7. Below the variable `response` from the previous step, create a conditional statement that checks `if` the `ok` property of `response` evaluates to a truthy value.
+
+8. Inside the code block of the conditional statement, `await response.json()` and save it to a variable called `jsonResponse` using the `const` keyword.
+
+9. Call the function `renderRawResponse()` and pass in `jsonResponse`. Then, run the code.
+
+In the response field, you can paste in a URL and click the shorten button.
+
+You should now see an object containing all the information the Rebrandly API sent back!
+
+You can view the purpose of the `renderRawResponse()` helper function at **public/09-helperFunctions.js.**
+
+10. Now it’s time to clean up the response sent back.
+
+Delete `renderRawResponse(jsonResponse)` and replace it with `renderResponse(jsonResponse)`. Run the code. Then paste in the URL again and click the shorten button.
+
+Notice the formatted response.
+
+Great job using Rebrandly to shorten your URL!
+
+You can view the purpose of the `renderRawResponse()` helper function at **public/09-helperFunctions.js.**
+
+***
+
+#### REQUESTS II
+
+### Review
+
+Let’s recap on the concepts covered in the previous exercises:
+
+1. GET and POST requests can be created a variety of ways.
+
+2. Use AJAX to asynchronously request data from APIs. `fetch()` and `async`/`await` are new functionalities developed in ES6 (promises) and ES8 respectively.
+
+3. Promises are a new type of JavaScript object that represent data that will eventually be returned from a request.
+
+4. `fetch()` is a web API that can be used to create requests. `fetch()` will return promises.
+
+5. We can chain `.then()` methods to handle promises returned by `fetch()`.
+
+6. The `.json()` method *converts a returned promise to a JSON object*.
+
+7. `async` is a keyword that is used to create functions that will return promises.
+
+8. `await` is a keyword that is used to tell a program to continue moving through the message queue while a promise resolves.
+
+9. `await` can only be used within functions declared with async.
